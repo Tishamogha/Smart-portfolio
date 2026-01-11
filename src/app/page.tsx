@@ -1,65 +1,188 @@
-import Image from "next/image";
+'use client';
+import Image from 'next/image';
+import profilePic from './assets/Tisha.png';
+import FloatingMenu from '../components/FloatingMenu';
+import SkillsSection from '../components/SkillsSection';
+import ExperienceSection from '@/components/ExperienceSection';
+import VolunteerSection from '@/components/VolunteerSection';
+import EducationSection from '@/components/EducationSection';
+import ContactSection from '@/components/ContactSection';
+import { useState } from 'react';
 
 export default function Home() {
+  const [darkMode, setDarkMode] = useState(false);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main
+      className={`min-h-screen transition-colors duration-500 ${darkMode ? 'bg-[#1E1E2F] text-[#F9FAFB]' : 'bg-[#F5F7FA] text-[#111827]'
+        }`}
+    >
+      {/* Hero Section */}
+      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between h-screen pt-24 md:pt-0">
+        {/* Left */}
+        <div className="md:w-1/2 space-y-6">
+          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
+            Tisha Mogha
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p
+            className={`text-lg md:text-xl ${darkMode ? 'text-[#D1D5DB]' : 'text-[#4B5563]'
+              }`}
+          >
+            Full Stack Developer | AI & Modern Web Enthusiast
           </p>
+          <div className="flex space-x-4">
+            <a href="/resume/TishaMogha_Resume.pdf" download="TishaMogha_Resume.pdf">
+              <button className="px-6 py-3 bg-[#6366F1] text-white rounded-lg font-medium shadow-md hover:bg-[#4F46E5] transition">
+                Download Resume
+              </button>
+            </a>
+
+
+            <button
+              className={`px-6 py-3 border rounded-lg font-medium shadow-md transition ${darkMode
+                ? 'border-[#818CF8] text-[#818CF8] hover:bg-[#2C2C42]'
+                : 'border-[#6366F1] text-[#6366F1] hover:bg-[#E0E7FF]'
+                }`}
+            >
+              Talk to My AI
+            </button>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        {/* Right - Profile Placeholder */}
+        <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
+          <div
+            className={`relative w-80 h-80 rounded-full shadow-xl border-4 overflow-hidden transition-colors duration-500 ${darkMode ? 'bg-[#2C2C42] border-[#6366F1]' : 'bg-gray-200 border-[#6366F1]'
+              }`}
           >
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src={profilePic}
+              alt="Profile Photo"
+              fill
+              className="object-cover transition-transform duration-500 hover:scale-105"
+              style={{ objectPosition: 'center 10%' }}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
         </div>
-      </main>
-    </div>
+      </div>
+
+      {/* About Me Section */}
+      <section
+        id="about"
+        className={`relative flex flex-col md:flex-row items-start justify-center py-24 px-6 md:px-12 transition-colors duration-500 ${darkMode ? 'bg-[#1E1E2F]' : 'bg-gray-50'
+          }`}
+      >
+        {/* Background shapes */}
+        <div className="absolute -z-10 top-10 left-10 w-72 h-72 rounded-full bg-gradient-to-r from-purple-400 to-indigo-500 opacity-20 blur-3xl"></div>
+        <div className="absolute -z-10 bottom-10 right-20 w-64 h-64 rounded-full bg-gradient-to-r from-pink-400 to-yellow-400 opacity-15 blur-3xl"></div>
+
+        {/* Left side: heading + icon */}
+        <div className="md:w-1/3 flex flex-col items-start mb-12 md:mb-0">
+          {/* Gradient bar */}
+          <div className="w-28 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mb-6"></div>
+
+          {/* Icon */}
+          <div className="mb-6 p-5 bg-purple-100 dark:bg-[#2C2C42] rounded-xl shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-16 w-16 text-[#6366F1] dark:text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5.121 17.804A4.992 4.992 0 0112 15a4.992 4.992 0 016.879 2.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </div>
+
+          {/* Heading */}
+          <h2
+            className={`text-2xl md:text-5xl font-extrabold drop-shadow-sm ${darkMode ? 'text-white' : 'text-[#6366F1]'}`}>
+            About Me
+          </h2>
+        </div>
+
+        {/* Right side */}
+        <div
+          className={`md:w-2/3 ${darkMode ? 'text-gray-300' : 'text-gray-800'
+            } space-y-4 text-lg md:text-xl leading-relaxed`}
+        >
+          <p>
+            From scribbling my first lines of code to building AI-powered web applications,{' '}
+            <span className="font-semibold">my journey as a Full Stack Developer</span> has been
+            driven by curiosity, creativity, and a love for crafting intuitive digital experiences.
+          </p>
+          <p>
+            I craft solutions that are not only functional but visually appealing, blending modern
+            design with clean code. Every project is an opportunity to challenge myself and create
+            something meaningful.
+          </p>
+          <p>
+            When I’m not coding, I explore AI trends, experiment with modern UI/UX designs, and
+            constantly refine my skills to stay at the cutting edge of web development.
+          </p>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <SkillsSection darkMode={darkMode} />
+
+      {/* Experience Section */}
+      <ExperienceSection darkMode={darkMode} />
+
+      {/* Volunteer Section */}
+      <VolunteerSection darkMode={darkMode} />
+
+      {/* Education Section */}
+      <EducationSection darkMode={darkMode} />
+
+      {/* Contact Section */}
+      <ContactSection darkMode={darkMode} />
+
+      {/* Live Chat Section */}
+      {/* <section id="chat" className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-[#2C2C42]">
+        <h2 className="text-4xl font-bold text-[#6366F1] dark:text-white">Live Chat</h2>
+      </section> */}
+
+      {/* Dark/Light Toggle */}
+      <div className="fixed top-4 right-4 cursor-pointer z-50">
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          className="p-2 rounded-full bg-gray-200 dark:bg-white shadow-md transition-colors duration-300 flex items-center justify-center"
+        >
+          {darkMode ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-yellow-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M6.05 17.95l-1.414 1.414m0-12.728l1.414 1.414M17.95 17.95l1.414 1.414M12 8a4 4 0 100 8 4 4 0 000-8z"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-gray-900"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+            </svg>
+          )}
+        </button>
+      </div>
+
+      {/* Floating Menu */}
+      <FloatingMenu />
+    </main>
   );
 }
