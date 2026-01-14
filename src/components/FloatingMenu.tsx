@@ -10,9 +10,12 @@ import {
   ChatBubbleOvalLeftIcon,
 } from '@heroicons/react/24/outline';
 
-export default function FloatingMenu() {
+interface FloatingMenuProps {
+  setIsChatOpen: (open: boolean) => void;
+}
+export default function FloatingMenu({ setIsChatOpen }: FloatingMenuProps) {
   const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false); // Prevent SSR mismatch
+  const [mounted, setMounted] = useState(false); 
 
   useEffect(() => {
     setMounted(true);
@@ -51,7 +54,9 @@ export default function FloatingMenu() {
       const section = document.getElementById('contact');
       section?.scrollIntoView({ behavior: 'smooth' });
      }, },
-    { name: 'Live Chat', icon: <ChatBubbleOvalLeftIcon className="h-6 w-6" />, action: () => alert('Live Chat') },
+    { name: 'Live Chat', 
+    icon: <ChatBubbleOvalLeftIcon className="h-6 w-6" />, 
+    action: () => setIsChatOpen(true)},
   ];
 
   return (

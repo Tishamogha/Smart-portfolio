@@ -71,23 +71,21 @@ export default function ExperienceSection({ darkMode }: ExperienceSectionProps) 
 
       {/* Timeline */}
       <div className="relative max-w-5xl mx-auto">
-        {/* Vertical line */}
-        <div className="absolute left-4 md:left-1/2 top-0 h-full w-1 bg-[#6366F1]/30 transform md:-translate-x-1/2" />
+        {/* Vertical line (only for desktop) */}
+        <div className="hidden md:block absolute left-1/2 top-0 h-full w-1 bg-[#6366F1]/30 transform -translate-x-1/2" />
 
-        <div className="space-y-20">
+        <div className="space-y-12">
           {experiences.map((exp, index) => {
             const isLeft = index % 2 === 0;
 
             return (
               <div
                 key={index}
-                className={`relative flex flex-col md:flex-row ${
-                  isLeft ? 'md:justify-start' : 'md:justify-end'
-                }`}
+                className="relative flex flex-col md:flex-row items-start md:items-stretch"
               >
-                {/* Timeline Dot with Pulse */}
-                <div className="absolute left-4 md:left-1/2 top-6 transform md:-translate-x-1/2 z-20">
-                  <span className="relative flex h-5 w-5">
+                {/* Timeline Dot */}
+                <div className="absolute left-0 md:left-1/2 top-0 md:top-6 transform md:-translate-x-1/2 flex items-start md:items-center">
+                  <span className="relative flex h-5 w-5 mt-1 md:mt-0">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6366F1] opacity-40" />
                     <span className="relative inline-flex rounded-full h-5 w-5 bg-[#6366F1]" />
                   </span>
@@ -95,11 +93,13 @@ export default function ExperienceSection({ darkMode }: ExperienceSectionProps) 
 
                 {/* Card */}
                 <div
-                  className={`mt-2 md:mt-0 w-full md:w-[45%] p-6 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-2 ${
+                  className={`mt-6 md:mt-0 w-full md:w-[45%] p-6 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-2 ${
                     darkMode
                       ? 'bg-[#2C2C42]'
                       : 'bg-white border border-[#6366F1]/20'
-                  } hover:shadow-[0_0_25px_rgba(99,102,241,0.35)]`}
+                  } hover:shadow-[0_0_25px_rgba(99,102,241,0.35)] ${
+                    isLeft ? 'md:mr-auto' : 'md:ml-auto'
+                  }`}
                 >
                   <h3 className="text-xl font-bold mb-1">{exp.role}</h3>
                   <p className="text-sm font-semibold text-[#6366F1]">

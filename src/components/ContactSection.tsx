@@ -1,30 +1,51 @@
 'use client';
-import { useState } from 'react';
+
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 interface ContactSectionProps {
   darkMode: boolean;
 }
 
 export default function ContactSection({ darkMode }: ContactSectionProps) {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
   const [isSending, setIsSending] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSending(true);
+    setSuccess(false);
 
-    // Simulate sending email for now
-    setTimeout(() => {
-      setIsSending(false);
-      setSuccess(true);
-      setFormData({ name: '', email: '', message: '' });
-    }, 1500);
+    if (!formRef.current) return;
+
+    emailjs
+      .sendForm(
+        'service_cm3f6ka',
+        'template_ntsejvg',
+        formRef.current,
+        'B8rqX588AOTDl4gjG'
+      )
+      .then(
+        () => {
+          setIsSending(false);
+          setSuccess(true);
+          setFormData({ name: '', email: '', message: '' });
+        },
+        (error) => {
+          console.error('EmailJS Error:', error);
+          setIsSending(false);
+          alert('Failed to send message. Please try again.');
+        }
+      );
   };
 
   return (
@@ -52,6 +73,7 @@ export default function ContactSection({ darkMode }: ContactSectionProps) {
 
       {/* Form */}
       <motion.form
+        ref={formRef}
         onSubmit={handleSubmit}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -64,41 +86,54 @@ export default function ContactSection({ darkMode }: ContactSectionProps) {
         <div className="flex flex-col md:flex-row gap-4">
           <motion.input
             type="text"
-            name="name"
+            name="name"   // ✅ matches {{name}}
             placeholder="Your Name"
             value={formData.name}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFormData({ ...formData, name: e.target.value })
+            }
             required
             whileFocus={{ scale: 1.02 }}
             className={`flex-1 px-4 py-3 rounded-lg border ${
-              darkMode ? 'border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 text-gray-900 placeholder-gray-500'
+              darkMode
+                ? 'border-gray-600 text-white placeholder-gray-400'
+                : 'border-gray-300 text-gray-900 placeholder-gray-500'
             } focus:outline-none focus:ring-2 focus:ring-[#6366F1] transition`}
           />
+
           <motion.input
             type="email"
-            name="email"
+            name="email"   // ✅ matches {{email}}
             placeholder="Your Email"
             value={formData.email}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
             required
             whileFocus={{ scale: 1.02 }}
             className={`flex-1 px-4 py-3 rounded-lg border ${
-              darkMode ? 'border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 text-gray-900 placeholder-gray-500'
+              darkMode
+                ? 'border-gray-600 text-white placeholder-gray-400'
+                : 'border-gray-300 text-gray-900 placeholder-gray-500'
             } focus:outline-none focus:ring-2 focus:ring-[#6366F1] transition`}
           />
         </div>
 
         {/* Message */}
         <motion.textarea
-          name="message"
+          name="message"  
           placeholder="Your Message"
           value={formData.message}
-          onChange={handleChange}
+          onChange={(e) =>
+            setFormData({ ...formData, message: e.target.value })
+          }
           required
           rows={6}
           whileFocus={{ scale: 1.02 }}
           className={`w-full px-4 py-3 rounded-lg border ${
-            darkMode ? 'border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 text-gray-900 placeholder-gray-500'
+            darkMode
+              ? 'border-gray-600 text-white placeholder-gray-400'
+              : 'border-gray-300 text-gray-900 placeholder-gray-500'
           } focus:outline-none focus:ring-2 focus:ring-[#6366F1] transition resize-none`}
         />
 

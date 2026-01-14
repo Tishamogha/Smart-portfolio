@@ -7,10 +7,12 @@ import ExperienceSection from '@/components/ExperienceSection';
 import VolunteerSection from '@/components/VolunteerSection';
 import EducationSection from '@/components/EducationSection';
 import ContactSection from '@/components/ContactSection';
+import AIChatbot from '@/components/AIChatbot';
 import { useState } from 'react';
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
     <main
@@ -39,13 +41,13 @@ export default function Home() {
 
 
             <button
-              className={`px-6 py-3 border rounded-lg font-medium shadow-md transition ${darkMode
-                ? 'border-[#818CF8] text-[#818CF8] hover:bg-[#2C2C42]'
-                : 'border-[#6366F1] text-[#6366F1] hover:bg-[#E0E7FF]'
-                }`}
+              onClick={() => setIsChatOpen(true)}
+              className="px-6 py-3 border rounded-lg font-medium shadow-md transition border-[#6366F1] text-[#6366F1] hover:bg-[#E0E7FF]"
             >
               Talk to My AI
             </button>
+
+            <AIChatbot isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
           </div>
         </div>
 
@@ -142,11 +144,6 @@ export default function Home() {
       {/* Contact Section */}
       <ContactSection darkMode={darkMode} />
 
-      {/* Live Chat Section */}
-      {/* <section id="chat" className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-[#2C2C42]">
-        <h2 className="text-4xl font-bold text-[#6366F1] dark:text-white">Live Chat</h2>
-      </section> */}
-
       {/* Dark/Light Toggle */}
       <div className="fixed top-4 right-4 cursor-pointer z-50">
         <button
@@ -180,9 +177,18 @@ export default function Home() {
           )}
         </button>
       </div>
+      <AIChatbot isOpen={isChatOpen} onClose={() => {setIsChatOpen(false); setTimeout(() => {
+      window.location.reload(); 
+      }, 200); 
+      }}
+      darkMode={darkMode}/>
 
       {/* Floating Menu */}
-      <FloatingMenu />
+      <FloatingMenu setIsChatOpen={setIsChatOpen} />
     </main>
   );
 }
+
+// service id : service_cm3f6ka
+// template id: template_ntsejvg
+// public key: B8rqX588AOTDl4gjG
