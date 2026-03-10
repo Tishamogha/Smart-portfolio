@@ -15,14 +15,16 @@ interface ExperienceSectionProps {
 export default function ExperienceSection({ darkMode }: ExperienceSectionProps) {
   const experiences: ExperienceItem[] = [
     {
-      role: 'Software Developer (Freelancer)',
+      role: 'IT System Administrator (Freelancer)',
       company: 'Upwork',
       location: 'Toronto, ON',
       date: 'Sep 2025 - Present',
       points: [
-        'Developed a web app that increased customer engagement by 40%.',
-        'Reduced system downtime by 25% by optimizing backend processes.',
-        'Led a team of 5 developers to deliver a project ahead of schedule.',
+        'Maintained and supported Windows and Linux systems, ensuring stable performance and system availability.',
+        'Monitored server environments and applications to identify and resolve technical issues.',
+        'Performed system updates, configuration changes, and basic security maintenance to maintain reliable systems.',
+        'Troubleshot software, database, and deployment issues, improving system stability and reducing downtime.',
+        'Assisted with server setup, application deployments, and environment configuration for web applications.',
       ],
     },
     {
@@ -31,9 +33,10 @@ export default function ExperienceSection({ darkMode }: ExperienceSectionProps) 
       location: 'Toronto, ON',
       date: 'Dec 2024 - Aug 2025',
       points: [
-        'Built a full-stack Client Portal, boosting engagement by 35%.',
-        'Led end-to-end SDLC in a 4-member Agile team, improving delivery speed by 20%.',
-        'Integrated secure authentication and Stripe payments with 5,000+ monthly transactions.',
+        'Managed the Software Development Life Cycle (SDLC) in a 4-member Agile team, improving delivery speed by 20%.',
+        'Implemented REST API integrations to enable seamless communication between frontend and backend systems.',
+        'Implemented secure authentication and Stripe payment gateway, supporting 5,000+ monthly transactions with zero issues.',
+        'Troubleshot application and database issues to improve system stability.',
       ],
     },
     {
@@ -43,7 +46,7 @@ export default function ExperienceSection({ darkMode }: ExperienceSectionProps) 
       date: 'Aug 2022 - Dec 2022',
       points: [
         'Developed a responsive job portal using PHP and MySQL for 10,000+ users.',
-        'Designed system architecture and documented workflows.',
+        'Assisted in system architecture planning and technical documentation.',
         'Improved performance and stability by fixing critical bugs.',
       ],
     },

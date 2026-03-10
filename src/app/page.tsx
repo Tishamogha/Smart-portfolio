@@ -178,7 +178,7 @@ export default function Home() {
         </button>
       </div>
       <AIChatbot isOpen={isChatOpen} onClose={() => {setIsChatOpen(false); setTimeout(() => {
-      window.location.reload(); 
+      window.location.reload();
       }, 200); 
       }}
       darkMode={darkMode}/>
