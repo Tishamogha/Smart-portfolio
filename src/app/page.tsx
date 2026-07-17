@@ -33,7 +33,7 @@ export default function Home() {
             Full Stack Developer | AI & Modern Web Enthusiast
           </p>
           <div className="flex space-x-4">
-            <a href="/resume/TishaMogha_Resume.pdf" download="TishaMogha_Resume_updated.pdf">
+            <a href="/resume/TishaMogha_Resume.pdf" download="TishaMogha_Resume.pdf">
               <button className="px-6 py-3 bg-[#6366F1] text-white rounded-lg font-medium shadow-md hover:bg-[#4F46E5] transition">
                 Download Resume
               </button>
