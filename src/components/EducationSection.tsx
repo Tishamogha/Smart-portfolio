@@ -15,7 +15,7 @@ export default function EducationSection({ darkMode }: { darkMode: boolean }) {
     {
       degree: 'Postgraduate Certificate in Information Technology',
       school: 'Humber College',
-      location: 'Toronto, ON',
+      location: 'Toronto, Canada',
       duration: '2023 – 2025',
       highlights: ['Completed with Honors'],
     },
